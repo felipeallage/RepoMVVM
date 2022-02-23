@@ -1,0 +1,6 @@
+framework module Pods_RepoMVVMTests {
+  umbrella header "Pods-RepoMVVMTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
