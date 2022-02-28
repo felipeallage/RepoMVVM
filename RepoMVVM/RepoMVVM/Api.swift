@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RepositoryAPIClosure {
+struct RepositoryAPI {
     
     func getRepository(completition: @escaping (UserInfoContainer) -> Void) {
         

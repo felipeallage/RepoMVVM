@@ -21,7 +21,7 @@ class RepoViewController: UIViewController {
         repoTableView.register(RepoTableViewCell.self, forCellReuseIdentifier: RepoTableViewCell.identifier)
         repoTableView.dataSource = self
         repoTableView.delegate = self
-        viewModel.getRepos { container in
+        viewModel.getRepository { container in
             self.repoList = container.items!
             self.repoTableView.reloadData()
         }

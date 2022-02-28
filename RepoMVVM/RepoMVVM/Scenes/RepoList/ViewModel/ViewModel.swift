@@ -11,11 +11,10 @@ import Foundation
 
 class RepoViewModel {
     
-    var repositoryAPIClosure = RepositoryAPIClosure()
+    var repositoryAPI = RepositoryAPI()
     
-    func getRepos(baba: @escaping (UserInfoContainer) -> Void) {
-        repositoryAPIClosure.getRepository(completition: baba)
-        
+    func getRepository(repository: @escaping (UserInfoContainer) -> Void) {
+        repositoryAPI.getRepository(completition: repository)
     }
     
 }
