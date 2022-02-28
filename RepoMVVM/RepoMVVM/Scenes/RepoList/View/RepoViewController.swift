@@ -21,24 +21,15 @@ class RepoViewController: UIViewController {
         repoTableView.register(RepoTableViewCell.self, forCellReuseIdentifier: RepoTableViewCell.identifier)
         repoTableView.dataSource = self
         repoTableView.delegate = self
-        viewModel.delegate = self
-        viewModel.getRepoWithClosure()
-    }
-
-
-}
-
-extension RepoViewController: RepoViewModelDelegate {
-    
-    func didGetRepo(repo: UserInfoContainer) {
-        self.repoList = repo.items!
-        repoTableView.reloadData()
+        viewModel.getRepos { container in
+            self.repoList = container.items!
+            self.repoTableView.reloadData()
+        }
     }
     
 }
 
 extension RepoViewController: UITableViewDelegate {
-    
     
 }
 
@@ -58,7 +49,5 @@ extension RepoViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
-    
-    
-    
+
 }
