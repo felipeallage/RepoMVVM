@@ -13,8 +13,13 @@ class RepoViewModel {
     
     var repositoryAPI = RepositoryAPI()
     
-    func getRepository(repository: @escaping (UserInfoContainer) -> Void) {
-        repositoryAPI.getRepository(completition: repository)
+    func getRepository(repository: @escaping ([Repository]) -> Void) {
+        repositoryAPI.getRepository { completition in
+            if let repolist = completition.items {
+                repository(repolist)
+            }
+            
+        }
     }
     
 }

@@ -21,10 +21,11 @@ class RepoViewController: UIViewController {
         repoTableView.register(RepoTableViewCell.self, forCellReuseIdentifier: RepoTableViewCell.identifier)
         repoTableView.dataSource = self
         repoTableView.delegate = self
-        viewModel.getRepository { container in
-            self.repoList = container.items!
+        viewModel.getRepository { repository in
+            self.repoList = repository
             self.repoTableView.reloadData()
         }
+        
     }
     
 }
