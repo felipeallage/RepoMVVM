@@ -22,7 +22,7 @@ class RepoViewController: UIViewController {
         repoTableView.dataSource = self
         repoTableView.delegate = self
         viewModel.delegate = self
-        viewModel.repoBinding()
+        viewModel.getRepoWithClosure()
     }
 
 
@@ -30,8 +30,8 @@ class RepoViewController: UIViewController {
 
 extension RepoViewController: RepoViewModelDelegate {
     
-    func didGetRepo(repo: [Repository]) {
-        self.repoList = repo
+    func didGetRepo(repo: UserInfoContainer) {
+        self.repoList = repo.items!
         repoTableView.reloadData()
     }
     
