@@ -7,23 +7,34 @@
 
 import Foundation
 
+struct RepoAPIContainer {
+    
+    var nextPage: Bool
+    
+    var container: UserInfoContainer
+    
+}
+
 struct RepositoryAPI {
     
-    func getRepository(completition: @escaping (UserInfoContainer) -> Void) {
+    func getRepository(link: String, completition: @escaping (RepoAPIContainer) -> Void) {
         
-        guard let url = URL(string: Constants.baseLink) else {
+        guard let url = URL(string: link) else {
             return
         }
         let request = URLRequest(url: url)
         URLSession.shared.dataTask(with: request) {data, response, error in
-            if let data = data {
+            var nextPageExists = false
+            if let data = data, let response = response as? HTTPURLResponse{
+                if let nextPage = response.allHeaderFields["Link"] as? String {
+                    nextPageExists = nextPage.contains("next")
+                }
                 let repositoryList = try! JSONDecoder().decode(UserInfoContainer.self, from: data)
                 DispatchQueue.main.async {
-                    completition(repositoryList)
+                    completition(RepoAPIContainer(nextPage: nextPageExists, container: repositoryList))
                 }
             }
         }.resume()
     }
-    
     
 }
