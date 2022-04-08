@@ -117,7 +117,6 @@
 				FB0AF6DB416A57AA24C622EF /* Pods-RepoMVVMTests.debug.xcconfig */,
 				8CE7A6DD0CB6C98D84CB1332 /* Pods-RepoMVVMTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
